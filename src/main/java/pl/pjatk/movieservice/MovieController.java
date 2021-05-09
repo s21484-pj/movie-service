@@ -12,11 +12,23 @@ import java.util.List;
 @RequestMapping("/movies")
 public class MovieController {
 
-    @GetMapping("/list")
-    public ResponseEntity<List<Movie>> getMovies() {
-        return ResponseEntity.ok(List.of(new Movie(1, "Example", Category.HORROR),
-                new Movie(2, "AnotherExample", Category.THRILLER)));
+    private final MovieService movieService;
+
+    public MovieController(MovieService movieService) {
+        this.movieService = movieService;
     }
 
+    @GetMapping("/list")
+    public ResponseEntity<List<Movie>> getMovies() {
+        return ResponseEntity.ok(movieService.findAll());
+    }
 
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Movie> getMovieByID(@PathVariable long id) {
+        if (movieService.findById().getId() == id) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

@@ -2,9 +2,9 @@ package pl.pjatk.movieservice;
 
 public class Movie {
 
-    private final long id;
-    private final String name;
-    private final Category category;
+    private long id;
+    private String name;
+    private Category category;
 
     public Movie(long id, String name, Category category) {
         this.id = id;
@@ -22,5 +22,17 @@ public class Movie {
 
     public Category getCategory() {
         return category;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
