@@ -1,4 +1,4 @@
-package pl.pjatk.movieservice;
+package pl.pjatk.movieservice.model;
 
 public enum Category {
 
