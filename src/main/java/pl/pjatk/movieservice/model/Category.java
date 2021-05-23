@@ -4,5 +4,6 @@ public enum Category {
 
     HORROR,
     THRILLER,
-    ACTION
+    ACTION,
+    SENSATIONAL
 }
