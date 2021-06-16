@@ -5,6 +5,7 @@ import pl.pjatk.movieservice.model.Movie;
 import pl.pjatk.movieservice.repository.MovieRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MovieService {
@@ -45,5 +46,25 @@ public class MovieService {
 
     public void deleteMovieById(Long id) {
         movieRepository.deleteById(id);
+    }
+
+    public void changeAvailabilityToTrue(Long id) {
+        Optional<Movie> movie = movieRepository.findById(id);
+        if (movie.isPresent()) {
+            movie.get().setAvailable(true);
+            save(movie.get());
+        } else {
+            throw new RuntimeException();
+        }
+    }
+
+    public void changeAvailabilityToFalse(Long id) {
+        Optional<Movie> movie = movieRepository.findById(id);
+        if (movie.isPresent()) {
+            movie.get().setAvailable(false);
+            save(movie.get());
+        } else {
+            throw new RuntimeException();
+        }
     }
 }

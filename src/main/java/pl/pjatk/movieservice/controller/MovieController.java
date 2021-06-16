@@ -56,4 +56,24 @@ public class MovieController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PutMapping("/{id}/true")
+    public ResponseEntity<Void> changeAvailabilityToTrue(@PathVariable Long id) {
+        if (movieService.existMovie(id)) {
+            movieService.changeAvailabilityToTrue(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/{id}/false")
+    public ResponseEntity<Void> changeAvailabilityToFalse(@PathVariable Long id) {
+        if (movieService.existMovie(id)) {
+            movieService.changeAvailabilityToFalse(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
